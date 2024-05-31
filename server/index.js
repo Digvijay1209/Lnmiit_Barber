@@ -12,7 +12,7 @@ app.use(express.json())
 
 
 app.use(cors({
-  origin: ["lnmiitbarber-digvijay1209s-projects.vercel.app"],
+  origin: [""],
   methods: ["GET", "POST"],
   credentials: true
 }))
@@ -55,6 +55,10 @@ app.get('/Dashboard',verifyUser ,(req, res) => {
     res.json("Success")
     
 
+})
+
+app.get("/",(req,res)=>{
+    res.json("hello");
 })
 
 app.get('/Dashboard_1',(req, res) => {
