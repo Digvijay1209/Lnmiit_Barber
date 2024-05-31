@@ -12,7 +12,7 @@ function Login() {
   axios.defaults.withCredentials = true;
   const handleSubmit = (e) => {
     e.preventDefault()
-    axios.post('http://localhost:3001/Login', { email, password })
+    axios.post('https://barberbackend-n1ypnfxhk-digvijay1209s-projects.vercel.app/Login', { email, password })
       .then(result => {
         console.log(result.data);
         
