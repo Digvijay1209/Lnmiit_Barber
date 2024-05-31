@@ -1,7 +1,7 @@
 const express = require("express")
 const mongoose = require('mongoose')
 const cors=require("cors")
-const bcrypt = require('bcrypt')
+const bcryptjs = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
 
@@ -149,7 +149,7 @@ app.post('/rejected', async (req, res) => {
 
 app.post('/register',(req,res)=>{
   const {name, email, password} = req.body;
-  bcrypt.hash(password,10)
+  bcryptjs.hash(password,10)
   .then(hash=>{
   EmployeeModel.create({name, email, password:hash})
     .then(employees => res.json(employees))
@@ -162,7 +162,7 @@ app.post('/Login', (req, res) => {
   const user = EmployeeModel.findOne({ email: email })
       .then(user => {
           if (user) {
-            bcrypt.compare(password, user.password, (err, response) => {
+            bcryptjs.compare(password, user.password, (err, response) => {
                 if(response) {
                   const token = jwt.sign({name: user.name, email: user.email, role: user.role },
                         "jwt-secret-key")  
