@@ -12,7 +12,7 @@ app.use(express.json())
 
 
 app.use(cors({
-  origin: ["frontend-sable-tau-61.vercel.app"],
+  origin: [""],
   methods: ["GET", "POST"],
   credentials: true
 }))
