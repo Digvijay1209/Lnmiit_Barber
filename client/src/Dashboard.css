@@ -1,0 +1,89 @@
+body {
+  background-image: url('./bb.jpg');
+  background-size: 110% 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.d_container{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding-top: 20px; 
+}
+.fetching p {
+  font-size: 16px;
+  margin: 0; 
+}
+.d_content {
+  display: flex;
+  justify-content: space-between;
+  width: 90%; 
+  margin: 0 auto; 
+  margin-top: 20px; 
+}
+
+.d_buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.d_status {
+  width: 40%; /* Adjust width as needed */
+  background: rgb(134, 216, 10);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: black;
+  margin-top: 40px;
+}
+.accepted {
+  color: green;
+
+}
+
+
+.d_nav{
+  background-color: rgb(4, 241, 185);
+  color: rgb(8, 8, 4);
+  font-size: 30px;
+  font-style: italic;
+  font-weight: bold;
+  padding: 10px 10px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  text-align: center;
+}
+
+.d_btn {
+  height: 90px;
+  width: 240px;
+  border: solid black;
+  background: rgb(134, 216, 10);
+  color: black;
+  padding: 15px 22px;
+  margin: 10px;
+  margin-right: 60px;
+  font-size: 32px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+/* Adjust button styles as needed */
+.d_bone,
+.d_btwo,
+.d_bthree,
+.d_bfour {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 45px;
+  margin-top: 20px;
+}
+.d_bfive{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 175px;
+  margin-top: 10px;
+}

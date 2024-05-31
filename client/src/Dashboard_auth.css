@@ -1,0 +1,202 @@
+body {
+  background-image: url('./bb.jpg');
+  background-size: 110% 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.d_containera {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding-top: 20px; /* Added padding to accommodate the navbar */
+}
+
+.d_contenta {
+  display: flex;
+  justify-content: space-between;
+  width: 90%; /* Adjust width as needed */
+  margin: 0 auto; /* Center content horizontally */
+  margin-top: 20px; /* Added margin for space */
+}
+
+.d_buttonsa {
+  display: flex;
+  flex-direction: column;
+}
+
+.d_statusa {
+  width: 40%; /* Adjust width as needed */
+  background: rgb(134, 216, 10);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  color: black;
+  margin-top: 40px;
+}
+
+.d_nava {
+  background-color: rgb(4, 241, 185);
+  color: rgb(8, 8, 4);
+  font-size: 30px;
+  font-style: italic;
+  font-weight: bold;
+  padding: 10px 10px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  text-align: center;
+}
+
+.d_btna {
+  height: 90px;
+  width: 240px;
+  border: solid black;
+  background: rgb(134, 216, 10);
+  color: black;
+  padding: 15px 22px;
+  margin: 10px;
+  margin-right: 60px;
+  font-size: 32px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+/* Adjust button styles as needed */
+.d_bonea,
+.d_btwoa,
+.d_bthreea,
+.d_bfoura
+ {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 45px;
+  margin-top: 20px;
+}
+.d_bfivea{
+  display: flex;
+  justify-content: space-between;
+  margin-left: 175px;
+  margin-top: 10px;
+}
+.accepted {
+  color: rgb(66, 16, 232);
+
+}
+.available_btn,
+.not_available_btn {
+  height: 70px;
+  width: 100px;
+  border: solid black;
+  background: rgb(134, 216, 10);
+  color: black;
+  padding: 2px;
+  
+  margin: 5px 40px;
+  font-size: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.available_btn_1
+ {
+  height: 70px;
+  width: 100px;
+  border: solid black;
+  background: rgb(134, 216, 10);
+  color: black;
+  padding: 2px;
+  
+  margin: 0px 105px ;
+  font-size: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  
+}
+/* Custom button styling */
+.button_group button {
+  background: rgb(42, 143, 237);
+  border: none;
+  padding: 5px 10px;
+  margin-right: 40px; /* Space between buttons */
+  margin-left: 20px;
+  cursor: pointer;
+  font-size: 19px;
+}
+
+.accept_btn {
+  background-color: black; /* Green color for Accept button */
+  color: black;
+  border-radius: 5px;
+}
+/* Add this to your Dashboard_auth.css */
+.accept_btn:disabled {
+  background-color: grey;
+  color: white;
+  cursor: not-allowed;
+}
+#b1:disabled{
+  background-color: grey;
+  color: white;
+  cursor: not-allowed;
+}
+
+#b2:disabled{
+  background-color: grey;
+  color: white;
+  cursor: not-allowed;
+}
+
+#b3:disabled{
+  background-color: grey;
+  color: white;
+  cursor: not-allowed;
+}
+
+#b4:disabled{
+  background-color: grey;
+  color: white;
+  cursor: not-allowed;
+}
+
+#b5:disabled{
+  background-color: grey;
+  color: white;
+  cursor: not-allowed;
+}
+
+#b6:disabled{
+  background-color: grey;
+  color: white;
+  cursor: not-allowed;
+}
+
+#b7:disabled{
+  background-color: grey;
+  color: white;
+  cursor: not-allowed;
+}
+
+#b8:disabled{
+  background-color: grey;
+  color: white;
+  cursor: not-allowed;
+}
+
+#b9:disabled{
+  background-color: grey;
+  color: white;
+  cursor: not-allowed;
+}
+
+.reject_btn {
+  background: black; /* Red color for Reject button */
+  color: black;
+  border-radius: 5px;
+}
+
+/* Hover effect */
+.button_group button:hover {
+  opacity: 0.8;
+}
