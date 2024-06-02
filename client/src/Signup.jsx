@@ -11,7 +11,7 @@ function Signup() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post('backend-plum-alpha-76.vercel.app/register', {name, email, password})
+        axios.post('https://lnmiit-barber-back.onrender.com/register', {name, email, password})
         .then(result => {console.log(result) 
             navigate('/Login')
         }).catch(err => console.log(err))
