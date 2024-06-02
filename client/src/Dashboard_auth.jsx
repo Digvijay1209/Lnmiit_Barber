@@ -26,7 +26,7 @@ function Dashboard_auth({ disabledButtons, handleAvailableClick, handleNotAvaila
     }, [navigate]);
 
     useEffect(() => {
-        axios.get('backend-plum-alpha-76.vercel.app/Dashboard_1')
+        axios.get('https://lnmiit-barber-back.onrender.com/Dashboard_1')
             .then(response => {
                 console.log(response.data);
                 setFeta(response.data);
@@ -34,7 +34,7 @@ function Dashboard_auth({ disabledButtons, handleAvailableClick, handleNotAvaila
     }, []);
 
     const auth_c = (name, time, status, index) => {
-        axios.post('backend-plum-alpha-76.vercel.app/updated', { name, time, status })
+        axios.post('https://lnmiit-barber-back.onrender.com/updated', { name, time, status })
             .then(result => {
                 console.log(result);
                 window.location.reload();
@@ -42,7 +42,7 @@ function Dashboard_auth({ disabledButtons, handleAvailableClick, handleNotAvaila
     };
 
     const reject_c = (name, time) => {
-        axios.post('backend-plum-alpha-76.vercel.app/rejected', { name, time })
+        axios.post('https://lnmiit-barber-back.onrender.com/rejected', { name, time })
             .then(result => {
                 console.log(result);
                 window.location.reload();
