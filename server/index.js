@@ -165,6 +165,17 @@ app.post('/register',(req,res)=>{
     .catch(err => res.json(err))
   }).catch(err=> res.json(err))
 })
+app.get('/checkToken', verifyUser, (req, res) => {
+  
+  const token = req.cookies.token;
+  jwt.verify(token, "jwt-secret-key", (err, decoded) => {
+    if (err) {
+      return res.status(401).json({ message: 'Invalid token' });
+    } else {
+      return res.json({ role: decoded.role });
+    }
+  });
+});
 
 app.post('/Login', (req, res) => {
   const { email, password } = req.body;
