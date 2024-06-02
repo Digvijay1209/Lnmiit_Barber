@@ -17,8 +17,7 @@ app.use(cors({
   credentials: true
 }))
 app.use(cookieParser())
-
-mongoose.connect("mongodb://127.0.0.1:27017/employee");
+mongoose.connect("mongodb+srv://dig:ab@barber.it6z4k9.mongodb.net/?retryWrites=true&w=majority&appName=barber");
 
 
 const verifyUser=(req,res,next)=>{
