@@ -13,7 +13,7 @@ function Dashboard_auth({ disabledButtons, handleAvailableClick, handleNotAvaila
     axios.defaults.withCredentials = true;
 
     useEffect(() => {
-        axios.get('backend-plum-alpha-76.vercel.app/Dashboard_auth')
+        axios.get('https://lnmiit-barber-back.onrender.com/Dashboard_auth')
             .then(res => {
                 console.log(res.data);
                 if (res.data === "Success") {
