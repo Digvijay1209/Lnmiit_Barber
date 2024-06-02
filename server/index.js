@@ -174,10 +174,10 @@ app.post('/Login', (req, res) => {
             bcrypt.compare(password, user.password, (err, response) => {
                 if(response) {
                   const token = jwt.sign({name: user.name, email: user.email, role: user.role },
-                        "jwt-secret-key")  
-                    res.cookie('token', token)
+                        "jwt-secret-key" , { expiresIn: '1d' } );  
                 
-                    return res.json(user)
+                    res.cookie('token', token, { httpOnly: true, maxAge: 86400000 }); 
+                    return res.json(user);
                 }else {
                     return res.json("The password is incorrect")
                 }
