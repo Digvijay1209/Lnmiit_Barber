@@ -10,8 +10,7 @@ const cookieParser = require('cookie-parser')
 const app = express()
 app.use(express.json())
 
-const express = require("express");
-const app = express();
+
 // Set middleware of CORS 
 app.use((req, res, next) => {
   res.setHeader(
