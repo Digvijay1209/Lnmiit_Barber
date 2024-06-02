@@ -28,22 +28,7 @@ function Login() {
         }
       }).catch(err => console.log(err))
   }
-  const checkToken = () => {
-  axios.get('https://lnmiit-barber-back.onrender.com/checkToken')
-    .then(result => {
-      if (result.data.role === "admin"){
-        navigate('/Dashboard_auth');
-      } else {
-        navigate('/Dashboard');
-      }
-    })
-    .catch(err => console.log('No token found or token is invalid', err));
-};
 
-
-useEffect(() => {
-  checkToken();
-}, []);
 
   return (
     <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
