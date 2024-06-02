@@ -1,7 +1,7 @@
 const express = require("express")
 const mongoose = require('mongoose')
 const cors=require("cors")
-const bcryptjs = require('bcryptjs')
+const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
 
@@ -12,7 +12,7 @@ app.use(express.json())
 
 
 app.use(cors({
-  origin: [""],
+  origin: ["http://localhost:5173"],
   methods: ["GET", "POST"],
   credentials: true
 }))
@@ -60,7 +60,6 @@ app.get('/Dashboard',verifyUser ,(req, res) => {
 app.get("/",(req,res)=>{
     res.json("hello");
 })
-
 app.get('/Dashboard_1',(req, res) => {
     TimeModel.find()
     .then(times => res.json(times))
@@ -149,7 +148,7 @@ app.post('/rejected', async (req, res) => {
 
 app.post('/register',(req,res)=>{
   const {name, email, password} = req.body;
-  bcryptjs.hash(password,10)
+  bcrypt.hash(password,10)
   .then(hash=>{
   EmployeeModel.create({name, email, password:hash})
     .then(employees => res.json(employees))
@@ -162,7 +161,7 @@ app.post('/Login', (req, res) => {
   const user = EmployeeModel.findOne({ email: email })
       .then(user => {
           if (user) {
-            bcryptjs.compare(password, user.password, (err, response) => {
+            bcrypt.compare(password, user.password, (err, response) => {
                 if(response) {
                   const token = jwt.sign({name: user.name, email: user.email, role: user.role },
                         "jwt-secret-key")  
