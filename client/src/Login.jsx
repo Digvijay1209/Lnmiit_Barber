@@ -12,7 +12,7 @@ function Login() {
   axios.defaults.withCredentials = true;
   const handleSubmit = (e) => {
     e.preventDefault()
-    axios.post('backend-plum-alpha-76.vercel.app/Login', { email, password })
+    axios.post('https://lnmiit-barber-back.onrender.com/Login', { email, password })
       .then(result => {
         console.log(result.data);
         
