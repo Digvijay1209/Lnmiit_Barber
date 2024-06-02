@@ -2,14 +2,14 @@ import React from 'react'
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios'
-
+axios.defaults.withCredentials = true;
 
 function Login() {
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
   const navigate = useNavigate()
  
-  axios.defaults.withCredentials = true;
+  
   const handleSubmit = (e) => {
     e.preventDefault()
     axios.post('https://lnmiit-barber-back.onrender.com/Login', { email, password })
@@ -28,6 +28,22 @@ function Login() {
         }
       }).catch(err => console.log(err))
   }
+  const checkToken = () => {
+  axios.get('https://lnmiit-barber-back.onrender.com/checkToken')
+    .then(result => {
+      if (result.data.role === "admin"){
+        navigate('/Dashboard_auth');
+      } else {
+        navigate('/Dashboard');
+      }
+    })
+    .catch(err => console.log('No token found or token is invalid', err));
+};
+
+
+useEffect(() => {
+  checkToken();
+}, []);
 
   return (
     <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
