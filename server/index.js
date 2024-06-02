@@ -176,7 +176,7 @@ app.post('/Login', (req, res) => {
                   const token = jwt.sign({name: user.name, email: user.email, role: user.role },
                         "jwt-secret-key" , { expiresIn: '1d' } );  
                 
-                    res.cookie('token', token, { maxAge: 86400000 }); 
+                    res.cookie('token', token, { httpOnly: true, maxAge: 86400000 }); 
                     return res.json(user);
                 }else {
                     return res.json("The password is incorrect")
