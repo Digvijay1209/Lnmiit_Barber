@@ -11,34 +11,22 @@ const app = express()
 app.use(express.json())
 
 
-// Set middleware of CORS 
-app.use((req, res, next) => {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "frontend-sable-tau-61.vercel.app"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
-  );
-  res.setHeader("Access-Control-Allow-Credentials", true);
-  res.setHeader("Access-Control-Allow-Private-Network", true);
- 
-  res.setHeader("Access-Control-Max-Age", 7200);
+const corsOptions = {
+  origin: 'https://frontend-sable-tau-61.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Content-Type-Options', 'Accept', 'X-Requested-With', 'Origin', 'Access-Control-Request-Method', 'Access-Control-Request-Headers'],
+  credentials: true,
+  maxAge: 7200
+};
 
-  next();
-});
+app.use(cors(corsOptions));
 
-app.use(cors({
-//origin: ["frontend-sable-tau-61.vercel.app"],
-  origin: ["*"],
-  methods: ["GET", "POST"],
-  credentials: true
-}))
+// app.use(cors({
+// //origin: ["frontend-sable-tau-61.vercel.app"],
+//   origin: ["*"],
+//   methods: ["GET", "POST"],
+//   credentials: true
+// }))
 app.use(cookieParser())
 mongoose.connect("mongodb+srv://dig:ab@barber.it6z4k9.mongodb.net/?retryWrites=true&w=majority&appName=barber");
 
