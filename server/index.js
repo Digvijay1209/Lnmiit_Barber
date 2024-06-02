@@ -34,8 +34,8 @@ app.use((req, res, next) => {
 });
 
 app.use(cors({
-origin: ["frontend-sable-tau-61.vercel.app"],
-  
+//origin: ["frontend-sable-tau-61.vercel.app"],
+  origin: ["*"],
   methods: ["GET", "POST"],
   credentials: true
 }))
