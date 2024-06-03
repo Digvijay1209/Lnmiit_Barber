@@ -179,7 +179,7 @@ app.post('/Login', (req, res) => {
                 
                       res.cookie('token', token, {
               httpOnly: true,
-              secure: process.env.NODE_ENV === 'production', 
+              secure: false,
               maxAge: 86400000 
             }); 
                     return res.json(user);
