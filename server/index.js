@@ -181,6 +181,8 @@ app.post('/Login', (req, res) => {
                      
               maxAge: 86400000 
             }); 
+                 console.log(token);
+                 console.log(cookie);
                     return res.json(user);
                 }else {
                     return res.json("The password is incorrect")
