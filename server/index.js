@@ -27,10 +27,10 @@ app.use(cors(corsOptions));
 //   methods: ["GET", "POST"],
 //   credentials: true
 // }))
-app.use(cookieParser())
+
 mongoose.connect("mongodb+srv://dig:ab@barber.it6z4k9.mongodb.net/?retryWrites=true&w=majority&appName=barber");
 
-
+app.use(cookieParser())
 const verifyUser=(req,res,next)=>{
     const token=req.cookies.token;
     
