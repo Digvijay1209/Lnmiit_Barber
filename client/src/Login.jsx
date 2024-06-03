@@ -12,7 +12,7 @@ function Login() {
   
   const handleSubmit = (e) => {
     e.preventDefault()
-    axios.post('https://lnmiit-barber-back.onrender.com/Login', { email, password })
+    axios.post('http://lnmiit-barber-back.onrender.com/Login', { email, password })
       .then(result => {
         console.log(result.data);
         
