@@ -12,7 +12,7 @@ app.use(express.json())
 
 
 const corsOptions = {
-  origin: 'front-jade-tau.vercel.app',
+  origin: 'https://front-jade-tau.vercel.app',
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Content-Type-Options', 'Accept', 'X-Requested-With', 'Origin', 'Access-Control-Request-Method', 'Access-Control-Request-Headers'],
   credentials: true,
