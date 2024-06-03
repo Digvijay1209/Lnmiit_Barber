@@ -35,6 +35,7 @@ app.use((req, res, next) => {
 
 const verifyUser = (req, res, next) => {
   const token = req.cookies.token;
+  console.log(token);
   if (!token) {
     return res.json("Token is missing");
   }
@@ -140,6 +141,7 @@ app.post('/Login', (req, res) => {
               httpOnly: true,
               maxAge: 86400000
             });
+            console.log(cookies.token);
             return res.json(user);
           } else {
             return res.json("The password is incorrect");
