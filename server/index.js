@@ -33,7 +33,7 @@ mongoose.connect("mongodb+srv://dig:ab@barber.it6z4k9.mongodb.net/?retryWrites=t
 app.use(cookieParser())
 const verifyUser=(req,res,next)=>{
     const token=req.cookies.token;
-    
+    console.log(token);
     if(!token){
         return res.json("Token is missing")
 
@@ -176,13 +176,13 @@ app.post('/Login', (req, res) => {
                   const token = jwt.sign({name: user.name, email: user.email, role: user.role },
                         "jwt-secret-key" , { expiresIn: '1d' } );  
                 
-                      res.cookie('token', token, {
+                      res.cookies('token', token, {
               httpOnly: true,
                      
               maxAge: 86400000 
             }); 
-                 console.log(token);
-                 console.log(cookie);
+                
+                 console.log(cookies.token);
                     return res.json(user);
                 }else {
                     return res.json("The password is incorrect")
