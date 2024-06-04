@@ -53,7 +53,7 @@ const verifyUser = (req, res, next) => {
   });
 };
 
-app.get('/Dashboard',  (req, res) => {
+app.get('/Dashboard', verifyUser , (req, res) => {
   res.json("Success");
 });
 
@@ -67,7 +67,7 @@ app.get('/Dashboard_1', (req, res) => {
     .catch(err => res.status(500).json({ error: err.message }));
 });
 
-app.get('/Dashboard_auth',  (req, res) => {
+app.get('/Dashboard_auth', verifyUser, (req, res) => {
   res.json("Success");
 });
 
