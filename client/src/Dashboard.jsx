@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import './Dashboard.css';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import Dashboard_auth from './Dashboard_auth';
 
-function Dashboard({ disabledButtons, handleAvailableClick, handleNotAvailableClick }) {
-    const [suc, setSuc] = useState();
+
+function Dashboard({ disabledButtons, handleAvailableClick, handleNotAvailableClick}) {
+const [suc, setSuc] = useState();
     const [fet, setFet] = useState();
 
     const navigate = useNavigate();
@@ -48,55 +50,49 @@ function Dashboard({ disabledButtons, handleAvailableClick, handleNotAvailableCl
                 window.location.reload();
             }).catch(err => console.log(err));
     }
-
     return (
         <div className='d_container'>
             <navbar className='d_nav'>
                 LNMIIT - Barber Shop
             </navbar>
             <div className="d_content">
-                <div className="d_header">
-                    <h2 className="d_title">Available Time Slots</h2>
-                    <p className="d_description">
-                        Please select an available time slot for your appointment.
-                    </p>
+                <div className="d_buttons">
+                    <div className="d_bone">
+                    <button className="d_btn" id="b1" onClick={() => { handleClick("9:30 AM"); handleNotAvailableClick(0) }} disabled={disabledButtons[0]}>9:30 AM</button>
+
+                            <button className="d_btn" id="b2" onClick={() =>{ handleClick("10:30 AM"); handleNotAvailableClick(1)}} disabled={disabledButtons[1]} >10:30 AM</button>
+                    </div>
+                    <div className="d_btwo">
+                        <button className="d_btn" id="b3" onClick={() => {handleClick("11:30 AM");handleNotAvailableClick(2)}}disabled={disabledButtons[2] }>11:30 AM</button>
+                        <button className="d_btn" id="b4" onClick={() => { handleClick("12:30 AM");handleNotAvailableClick(3)}}disabled={disabledButtons[3] }>12:30 PM</button>
+                    </div>
+                    <div className="d_bthree">
+                        <button className="d_btn" id="b5" onClick={() => { handleClick("2:30 AM");handleNotAvailableClick(4)}} disabled={disabledButtons[4]}>2:30 PM</button>
+                        <button className="d_btn" id="b6" onClick={() => {handleClick("3:30 AM");handleNotAvailableClick(5)}} disabled={disabledButtons[5]}>3:30 PM</button>
+                    </div>
+                    <div className="d_bfour">
+                        <button className="d_btn" id="b7"onClick={() => {handleClick("4:30 AM");handleNotAvailableClick(6)}}disabled={disabledButtons[6]}>4:30 PM</button>
+                        <button className="d_btn" id="b8"onClick={() => { handleClick("5:30 AM");handleNotAvailableClick(7)}}disabled={disabledButtons[7]}>5:30 PM</button>
+                    </div>
+                    <div className="d_bfive">
+                        <button className="d_btn" id="b9"onClick={() => {handleClick("6:30 AM");handleNotAvailableClick(8)}}disabled={disabledButtons[8]}>6:30 PM</button>
+                    </div>
                 </div>
-                <div className="d_slots">
-                    <ul className="d_slotsList">
-                        {fet && fet.map((item) => (
-                            <li key={item.timing}>
-                                <div className="d_slot">
-                                    <div className="d_time">{item.timing}</div>
-                                    <div className={`d_status ${item.status === 'Accepted' ? 'accepted' : item.status === 'Rejected' ? 'rejected' : 'pending'}`}>
-                                        {item.status}
-                                    </div>
-                                    <div className="d_buttons">
-                                        <button
-                                            className={`d_button ${disabledButtons[item.timing] ? 'disabled' : ''}`}
-                                            onClick={() => handleClick(item.timing)}
-                                            disabled={disabledButtons[item.timing] || item.status !== 'Pending'}
-                                        >
-                                            Book
-                                        </button>
-                                        <button
-                                            className={`d_button ${disabledButtons[item.timing] ? 'disabled' : ''}`}
-                                            onClick={() => handleAvailableClick(item.timing)}
-                                            disabled={disabledButtons[item.timing] || item.status !== 'Pending'}
-                                        >
-                                            Available
-                                        </button>
-                                        <button
-                                            className={`d_button ${disabledButtons[item.timing] ? 'disabled' : ''}`}
-                                            onClick={() => handleNotAvailableClick(item.timing)}
-                                            disabled={disabledButtons[item.timing] || item.status !== 'Pending'}
-                                        >
-                                            Not Available
-                                        </button>
-                                    </div>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
+                <div className="d_status">
+                    <h2>Current Status 
+                        <ul>
+                            {fet &&fet.map((item,index)=>(
+                                   <li key={index} className="fetching">
+                                   <p>Name: {item.name} | Timing: {item.timing} | Status: 
+                                       <span className={item.status === 'Accepted' ? 'accepted' : ''}>
+                                           {item.status}
+                                       </span>
+                                   </p>
+                               </li>
+                            ))}
+                        </ul>
+                    </h2>
+                    <p></p>
                 </div>
             </div>
         </div>
