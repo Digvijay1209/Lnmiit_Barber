@@ -1,34 +1,28 @@
-import React from 'react'
-import { useState } from "react";
+import React, { useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import axios from 'axios'
+import axios from 'axios';
 axios.defaults.withCredentials = true;
 
 function Login() {
-  const [email, setEmail] = useState()
-  const [password, setPassword] = useState()
-  const navigate = useNavigate()
- 
-  
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     axios.post('https://lnmiit-barber-back.onrender.com/Login', { email, password })
       .then(result => {
         console.log(result.data);
-        
         if (result) {
-         
-          if ( result.data.role === "admin"){
-            navigate('/Dashboard_auth')
+          if (result.data.role === "admin") {
+            navigate('/Dashboard_auth');
+          } else {
+            navigate('/Dashboard');
           }
-          else{
-            navigate('/Dashboard')
-          }
-
         }
-      }).catch(err => console.log(err))
+      })
+      .catch(err => console.log(err));
   }
-
 
   return (
     <div className="d-flex justify-content-center align-items-center bg-secondary vh-100">
@@ -41,6 +35,7 @@ function Login() {
             </label>
             <input
               type="email"
+              id="email"
               placeholder="Enter Email"
               autoComplete="off"
               name="email"
@@ -49,11 +44,12 @@ function Login() {
             />
           </div>
           <div className="mb-3">
-            <label htmlFor="email">
+            <label htmlFor="password">
               <strong>Password</strong>
             </label>
             <input
               type="password"
+              id="password"
               placeholder="Enter Password"
               name="password"
               className="form-control rounded-0"
@@ -68,10 +64,9 @@ function Login() {
         <Link to="/register" className="btn btn-default border w-100 bg-light rounded-0 text-decoration-none">
           Sign Up
         </Link>
-
       </div>
     </div>
-  )
+  );
 }
 
 export default Login;
