@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const cors = require("cors");
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const cookieParser = require('cookie-parser');
 
 const EmployeeModel = require('./models/Employee');
 const TimeModel = require('./models/Time');
@@ -22,19 +21,8 @@ app.use(cors(corsOptions));
 
 mongoose.connect("mongodb+srv://dig:ab@barber.it6z4k9.mongodb.net/?retryWrites=true&w=majority&appName=barber");
 
-app.use(cookieParser());
-
-// Set CORS headers globally
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://front-jade-tau.vercel.app');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, OPTIONS');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  next();
-});
-
 const verifyUser = (req, res, next) => {
-  const token = req.cookies.token;
+  const token = req.headers.authorization && req.headers.authorization.split(' ')[1];
   
   if (!token) {
     return res.json("Token is missing");
@@ -45,6 +33,7 @@ const verifyUser = (req, res, next) => {
       return res.json('Err with token');
     } else {
       if (decoded.role === "admin" || decoded.role === "visitor") {
+        req.user = decoded;  // Store decoded user info in req object
         next();
       } else {
         return res.json("not allowed");
@@ -71,19 +60,12 @@ app.get('/Dashboard_auth', verifyUser, (req, res) => {
   res.json("Success");
 });
 
-app.post('/dashboard', (req, res) => {
+app.post('/dashboard', verifyUser, (req, res) => {
   const { timing, status } = req.body;
-  const token = req.cookies.token;
-  jwt.verify(token, "jwt-secret-key", (err, decoded) => {
-    if (err) {
-      return res.json('Error with token');
-    } else {
-      const name = decoded.name;
-      TimeModel.create({ timing, name, status })
-        .then(time => res.json(time))
-        .catch(err => res.json(err));
-    }
-  });
+  const name = req.user.name;
+  TimeModel.create({ timing, name, status })
+    .then(time => res.json(time))
+    .catch(err => res.json(err));
 });
 
 app.post('/updated', async (req, res) => {
@@ -137,12 +119,7 @@ app.post('/Login', (req, res) => {
         bcrypt.compare(password, user.password, (err, response) => {
           if (response) {
             const token = jwt.sign({ name: user.name, email: user.email, role: user.role }, "jwt-secret-key", { expiresIn: '1d' });
-            res.cookie('token', token, {
-              httpOnly: true,
-              maxAge: 86400000
-            });
-            
-            return res.json(user);
+            return res.json({ token, user });
           } else {
             return res.json("The password is incorrect");
           }
