@@ -5,36 +5,44 @@ import axios from 'axios';
 
 
 function Dashboard_auth({ disabledButtons, handleAvailableClick, handleNotAvailableClick }){
-    const [sucd, setSucd] = useState();
-    const [feta, setFeta] = useState([]);
-
+ const [suc, setSuc] = useState();
+    const [fet, setFet] = useState();
 
     const navigate = useNavigate();
     axios.defaults.withCredentials = true;
 
     useEffect(() => {
-        axios.get('https://lnmiit-barber-back.onrender.com/Dashboard_auth')
+        const token = localStorage.getItem('token');
+        axios.get('https://lnmiit-barber-back.onrender.com/Dashboard_auth', {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
             .then(res => {
                 console.log(res.data);
                 if (res.data === "Success") {
-                    setSucd("Succeeded OK");
+                    setSuc("Succeeded OK");
                 } else {
                     navigate('/login');
                 }
-            })
-            .catch(err => console.log(err));
+            }).catch(err => console.log(err));
     }, [navigate]);
 
     useEffect(() => {
         axios.get('https://lnmiit-barber-back.onrender.com/Dashboard_1')
             .then(response => {
                 console.log(response.data);
-                setFeta(response.data);
+                setFet(response.data);
             }).catch(err => console.log(err));
     }, []);
 
     const auth_c = (name, time, status, index) => {
-        axios.post('https://lnmiit-barber-back.onrender.com/updated', { name, time, status })
+        const token = localStorage.getItem('token');
+        axios.post('https://lnmiit-barber-back.onrender.com/updated', { name, time: timing, status }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
             .then(result => {
                 console.log(result);
                 window.location.reload();
@@ -42,11 +50,17 @@ function Dashboard_auth({ disabledButtons, handleAvailableClick, handleNotAvaila
     };
 
     const reject_c = (name, time) => {
-        axios.post('https://lnmiit-barber-back.onrender.com/rejected', { name, time })
+        const token = localStorage.getItem('token');
+        axios.post('https://lnmiit-barber-back.onrender.com/rejected', { name, time: timing }, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        })
             .then(result => {
                 console.log(result);
                 window.location.reload();
             }).catch(err => console.log(err));
+    }
     };
    
 
