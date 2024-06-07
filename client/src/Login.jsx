@@ -13,8 +13,9 @@ function Login() {
     axios.post('https://lnmiit-barber-back.onrender.com/Login', { email, password })
       .then(result => {
         console.log(result.data);
-        if (result) {
-          if (result.data.role === "admin") {
+        if (result.data.token) {
+          localStorage.setItem('token', result.data.token);
+          if (result.data.user.role === "admin") {
             navigate('/Dashboard_auth');
           } else {
             navigate('/Dashboard');
