@@ -6,49 +6,45 @@ import Dashboard_auth from './Dashboard_auth';
 
 
 function Dashboard({ disabledButtons, handleAvailableClick, handleNotAvailableClick}) {
-const [suc, setSuc] = useState();
+    const [suc, setSuc] = useState();
     const [fet, setFet] = useState();
-
+    
     const navigate = useNavigate();
     axios.defaults.withCredentials = true;
 
     useEffect(() => {
-        const token = localStorage.getItem('token');
-        axios.get('https://lnmiit-barber-back.onrender.com/Dashboard', {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
+        axios.get('https://lnmiit-barber-back.onrender.com/Dashboard')
             .then(res => {
                 console.log(res.data);
                 if (res.data === "Success") {
-                    setSuc("Succeeded OK");
+                    setSuc("Successded OK");
                 } else {
                     navigate('/login');
                 }
             }).catch(err => console.log(err));
-    }, [navigate]);
-
+           
+          
+    }, []);
     useEffect(() => {
-        axios.get('https://lnmiit-barber-back.onrender.com/Dashboard_1')
+     
+           
+            axios.get('https://lnmiit-barber-back.onrender.com/Dashboard_1')
             .then(response => {
                 console.log(response.data);
                 setFet(response.data);
+                
             }).catch(err => console.log(err));
     }, []);
-
-    const status = "Pending";
-    const handleClick = (timing) => {
-        const token = localStorage.getItem('token');
-        axios.post('https://lnmiit-barber-back.onrender.com/dashboard', { timing, status }, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        })
-            .then(result => {
-                console.log(result);
-                window.location.reload();
-            }).catch(err => console.log(err));
+    
+    
+  const status="Pending";
+    const handleClick=(timing)=>{
+        
+       
+        axios.post('https://lnmiit-barber-back.onrender.com/dashboard', {timing,status})
+        .then(result => {console.log(result) 
+            window.location.reload();
+        }).catch(err => console.log(err))
     }
     return (
         <div className='d_container'>
